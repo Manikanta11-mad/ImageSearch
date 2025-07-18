@@ -17,20 +17,15 @@
 
   <form>
     <input type="text" id="search-box" placeholder="Search anything here..." />
-    <button id="search-btn" type="button"><i class="fas fa-search"></i></button>
-    <button id="voice-btn" type="button"><i class="fas fa-microphone"></i></button>
+    <div class="btn-wrap">
+      <button id="search-btn" type="button"><i class="fas fa-search"></i></button>
+      <button id="voice-btn" type="button"><i class="fas fa-microphone"></i></button>
+    </div>
   </form>
 
-  <div class="categories">
-    <button class="category">Nature</button>
-    <button class="category">Cars</button>
-    <button class="category">Technology</button>
-    <button class="category">Architecture</button>
-    <button class="category">Animals</button>
-  </div>
-
   <div id="search-result"></div>
-  <button id="scroll-to-top" style="display: none;"><i class="fas fa-arrow-up"></i></button>
+
+  <button id="scroll-to-top"><i class="fas fa-arrow-up"></i></button>
 
   <script src="script.js"></script>
 </body>

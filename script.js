@@ -6,7 +6,6 @@ const searchBtn = document.getElementById("search-btn");
 const scrollTopBtn = document.getElementById("scroll-to-top");
 const themeToggle = document.getElementById("theme-toggle");
 const voiceBtn = document.getElementById("voice-btn");
-const categoryBtns = document.querySelectorAll(".category");
 
 let page = 1;
 let query = "";
@@ -47,7 +46,6 @@ async function searchImages(reset = false) {
   scrollTopBtn.style.display = "block";
 }
 
-// Search actions
 searchBtn.addEventListener("click", () => searchImages(true));
 searchBox.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -56,7 +54,6 @@ searchBox.addEventListener("keydown", (e) => {
   }
 });
 
-// Infinite scroll & scroll button
 window.addEventListener("scroll", () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
     searchImages();
@@ -68,7 +65,6 @@ scrollTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Theme toggle
 themeToggle.addEventListener("click", () => {
   document.body.classList.toggle("light");
   const icon = themeToggle.querySelector("i");
@@ -76,7 +72,6 @@ themeToggle.addEventListener("click", () => {
   icon.classList.toggle("fa-sun");
 });
 
-// Voice search
 voiceBtn.addEventListener("click", () => {
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
   recognition.lang = "en-US";
@@ -85,22 +80,4 @@ voiceBtn.addEventListener("click", () => {
     searchBox.value = e.results[0][0].transcript;
     searchImages(true);
   };
-});
-
-// Category search
-categoryBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    searchBox.value = btn.innerText;
-    searchImages(true);
-  });
-});
-const themeBtn = document.getElementById("theme-toggle");
-const body = document.body;
-
-themeBtn.addEventListener("click", () => {
-  body.classList.toggle("light");
-
-  const icon = themeBtn.querySelector("i");
-  icon.classList.toggle("fa-moon");
-  icon.classList.toggle("fa-sun");
 });
