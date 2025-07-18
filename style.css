@@ -158,11 +158,21 @@ body.light .categories .category {
   .header {
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    padding: 0 15px;
   }
 
   h1.animated-heading {
-    font-size: 2.2rem;
-    text-align: center;
+    font-size: 2rem;
+    line-height: 1.3;
+    word-break: break-word;
+    margin: 10px 0;
+  }
+
+  .theme-toggle-wrap {
+    position: absolute;
+    top: 10px;
+    right: 15px;
   }
 
   form {
@@ -219,3 +229,4 @@ body.light .categories .category {
     font-size: 16px;
   }
 }
+
