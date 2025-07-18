@@ -47,9 +47,8 @@ async function searchImages(reset = false) {
   scrollTopBtn.style.display = "block";
 }
 
-// Event Listeners
+// Search actions
 searchBtn.addEventListener("click", () => searchImages(true));
-
 searchBox.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
@@ -57,6 +56,7 @@ searchBox.addEventListener("keydown", (e) => {
   }
 });
 
+// Infinite scroll & scroll button
 window.addEventListener("scroll", () => {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
     searchImages();
@@ -64,7 +64,6 @@ window.addEventListener("scroll", () => {
 
   scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
 });
-
 scrollTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
@@ -73,13 +72,13 @@ scrollTopBtn.addEventListener("click", () => {
 themeToggle.addEventListener("click", () => {
   document.body.classList.toggle("light");
   const icon = themeToggle.querySelector("i");
-  icon.classList.toggle("fa-sun");
   icon.classList.toggle("fa-moon");
+  icon.classList.toggle("fa-sun");
 });
 
 // Voice search
 voiceBtn.addEventListener("click", () => {
-  const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
   recognition.lang = "en-US";
   recognition.start();
   recognition.onresult = (e) => {
@@ -88,10 +87,20 @@ voiceBtn.addEventListener("click", () => {
   };
 });
 
-// Category filtering
+// Category search
 categoryBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     searchBox.value = btn.innerText;
     searchImages(true);
   });
+});
+const themeBtn = document.getElementById("theme-toggle");
+const body = document.body;
+
+themeBtn.addEventListener("click", () => {
+  body.classList.toggle("light");
+
+  const icon = themeBtn.querySelector("i");
+  icon.classList.toggle("fa-moon");
+  icon.classList.toggle("fa-sun");
 });
